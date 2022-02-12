@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <container>
+    <StartPage
+      v-if="currentPage === 'StartPage'"
+      @change-page="handleChangePage"
+    />
+    <GamePage v-else-if="currentPage === 'GamePage'" />
+  </container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import StartPage from "./pages/StartPage.vue";
+import GamePage from "./pages/GamePage.vue";
+import { ref } from "vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    GamePage,
+    StartPage,
+  },
+  setup() {
+    const currentPage = ref("GamePage");
+    // const currentPage = ref("StartPage");
+    const handleChangePage = (page) => {
+      currentPage.value = page;
+    };
+    return {
+      currentPage,
+      handleChangePage,
+    };
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>

@@ -1,4 +1,8 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import App from "./App.vue";
+import { getRootContainer } from "./game";
+import { createApp } from "./runtime-canvas";
 
-createApp(App).mount('#app')
+const stage = getRootContainer();
+console.warn = () => {};
+
+createApp(App).mount(stage);
